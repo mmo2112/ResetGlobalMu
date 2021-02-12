@@ -14,6 +14,7 @@ public class AccountConfig {
     public Map<String, Account> accountMap() {
         Map<String, Account> accountMap = new LinkedHashMap<String, Account>() {{
             //Add account here
+            //put("hint", new Account("username", "password", "123456"));
         }};
 
         return accountMap;

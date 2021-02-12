@@ -1,0 +1,17 @@
+spring:
+  profiles:
+    active: ${APPLICATION_PROFILE}
+  application:
+    name: global
+  http:
+    multipart:
+      max-file-size: 10MB
+
+server:
+  port: 8899
+  context-path: /${spring.application.name}
+
+model:
+  converter:
+    enabled: true
+    scanPackages: com.global.mu

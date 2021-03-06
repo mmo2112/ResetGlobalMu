@@ -41,10 +41,12 @@ public class ResetBuzImpl implements MuBuz {
         if (result.contains("login")) {
             for (int i = 0; i < maxRetryTime; i++) {
                 result = loginBuz.run(account);
-                System.out.println("Try to re login " + user + ": " + result);
+                System.out.println("Try to re login " + user + " at " + i + ": " + result);
 
                 if (result.equals("success")) {
+                    cookie = (String) redisTemplate.opsForValue().get(CacheUtils.getRedisKey(account.getUsername()));
                     result = HttpUtils.callApi(user, MethodEnum.POST, Constant.RESET, cookie, dataMap);
+                    System.out.println("Try to reset " + user + " at " + i + ": " + result);
 
                     if (!StringUtils.isEmpty(result) && !result.contains("login"))
                         break;
